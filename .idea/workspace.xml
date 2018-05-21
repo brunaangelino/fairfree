@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c64729a-ae27-4861-992d-203d64df9aa9" name="Default" comment="Iniciando projeto">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="2c64729a-ae27-4861-992d-203d64df9aa9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/FairFree.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/easy-install.pth" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.6.egg/EGG-INFO/PKG-INFO" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.6.egg/EGG-INFO/SOURCES.txt" beforeDir="false" />
@@ -434,8 +438,8 @@
         <option value="$PROJECT_DIR$/api/models.py" />
         <option value="$PROJECT_DIR$/api/test/test_models.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -618,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526886242643</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ajustando requirements">
+      <created>1526886587767</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1526886587767</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -723,7 +734,8 @@
     <MESSAGE value="Removendo sglite3" />
     <MESSAGE value="Removendo sqlite3" />
     <MESSAGE value="Modificando o readme.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificando o readme.md" />
+    <MESSAGE value="Ajustando requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando requirements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1077,8 +1089,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        <state relative-caret-position="102">
+          <caret line="8" column="142" selection-start-line="8" selection-start-column="142" selection-end-line="8" selection-end-column="142" />
         </state>
       </provider>
     </entry>
