@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
 import os.path
 from django.core.management.base import BaseCommand
+from adaptor.model import CsvDataException
 
-from api.adaptors import FairAdaptor
+from api.adaptors import FairAdaptorModel
+from api.importers import CSVImporter
 
 
 class Command(BaseCommand):
@@ -15,15 +17,14 @@ class Command(BaseCommand):
         file_names = options['file_names']
 
         for file_name in file_names:
-            path = 'api/archives/FEIRAS_LIVRES/CSV/DEINFO_DADOS_AB_FEIRASLIVRES/%s' % (file_name)
+            csv_importer = CSVImporter(file_name)
 
-            if os.path.isfile(path):
+            if csv_importer.exists_file():
                 print('Importando arquivo "%s" ... Aguarde!' % file_name)
 
-                with open(path) as archive:
-                    FairAdaptor.import_data(data=archive)
+                csv_importer.import_from_filename(FairAdaptorModel)
 
-                print('Arquivo "%s" importado.' % path)
+                print('Arquivo "%s" importado.' % file_name)
 
             else:
-                print('Diretório "%s" não encontrado.' % (path))
+                print('Arquivo %s não encontrado.' % (file_name))

@@ -5,7 +5,7 @@ from django.test import TestCase
 from api.models import Fair
 
 
-class TestFair(TestCase):
+class FairTest(TestCase):
 
     def setUp(self):
         self.fair = mixer.blend(Fair, nome='Feira Livre')

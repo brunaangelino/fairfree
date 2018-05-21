@@ -4,7 +4,7 @@ from adaptor import model
 from api import models as models_api
 
 
-class FairAdaptor(model.CsvDbModel):
+class FairAdaptorModel(model.CsvDbModel):
     class Meta:
         dbModel = models_api.Fair
         delimiter = ","
