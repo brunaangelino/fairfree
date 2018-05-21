@@ -1,6 +1,5 @@
-# Feira Livre - API REST, testes unitários, importação de arquivo CSV
-
-Então para criar a API, no meu caso, eu usei:
+# Feira Livre
+## API REST, testes unitários, importação de arquivo CSV
 
 * Ambiente: .venv
 * Projeto: fairfree
@@ -20,6 +19,9 @@ $ cd ..
 $ cd ..
 $ pip install -r requirements.txt
 $ python manage.py migrate
+$ python manage.py import_archive_csv_fair DEINFO_AB_FEIRASLIVRES_2014.csv
+$ python manage.py test
+$python manage.py runserver
 ```
 
 ## Configurando um novo ambiente
@@ -35,6 +37,8 @@ $ mkdir fairfree; cd fairfree
 $ pip install django
 $ pip install djangorestframework
 $ pip install django-filter
+$ pip install mixer
+$ pip install lxml
 $ pip freeze > requirements.txt
 $ django-admin.py startproject fairfree.
 $ python manage.py startapp api
@@ -45,8 +49,13 @@ Veja o meu requirements.txt
 Django==2.0.5
 django-filter==1.1.0
 djangorestframework==3.8.2
+Faker==0.8.8
 lxml==4.2.1
 mixer==6.0.1
+python-dateutil==2.7.3
+pytz==2018.4
+six==1.11.0
+text-unidecode==1.2
 ```
 
 ## Step-0 Projeto inicial
@@ -101,7 +110,7 @@ $ python manage.py migrate
 
 ### `serializers.py`: Criando `FairSerializer`
 
-Precisamos proporcionar uma forma de [serialização][5] e desserialização das instâncias de `fair` em uma representação JSON.
+Precisamos proporcionar uma forma de serialização e desserialização das instâncias de `fair` em uma representação JSON.
 
 ```bash
 $ cd api
