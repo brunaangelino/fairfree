@@ -45,8 +45,12 @@ Veja o meu requirements.txt
 Django==2.0.5
 django-filter==1.1.0
 djangorestframework==3.8.2
-lxml==4.2.1
+Faker==0.8.8
 mixer==6.0.1
+python-dateutil==2.7.3
+pytz==2018.4
+six==1.11.0
+text-unidecode==1.2
 ```
 
 ## Step-0 Projeto inicial
