@@ -4,15 +4,15 @@ from rest_framework.serializers import ModelSerializer, CharField
 from api.models import Fair
 
 
-class FairListSerializer(ModelSerializer):
+class FairSerializer(ModelSerializer):
     class Meta:
         model = Fair
         fields = '__all__'
 
 
-class FairListSerializer(FairListSerializer):
+class FairListSerializer(FairSerializer):
     pass
 
 
-class FairDetailSerializer(FairListSerializer):
+class FairDetailSerializer(FairSerializer):
     registro = CharField(max_length=6, read_only=True)

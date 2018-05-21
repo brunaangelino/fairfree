@@ -21,10 +21,10 @@ class Command(BaseCommand):
 
             if csv_importer.exists_file():
                 print('Importando arquivo "%s" ... Aguarde!' % file_name)
-
-                csv_importer.import_from_filename(FairAdaptorModel)
-
-                print('Arquivo "%s" importado.' % file_name)
+                try:
+                    csv_importer.import_from_filename(FairAdaptorModel)
+                except CsvDataException:
+                    print('Arquivo "%s" importado.' % file_name)
 
             else:
                 print('Arquivo %s não encontrado.' % (file_name))

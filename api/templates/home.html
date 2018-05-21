@@ -1,10 +1,138 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Feira Livre</title>
 </head>
 <body>
-    <p>Hello world!</p>
+    <h1>Feira Livre</h1>
+    <div class="container">
+        <p><a href="#example-post">#1 - POST</a></p>
+        <p><a href="#example-get-single">#2 - GET SINGLE</a></p>
+        <p><a href="#example-patch">#3 - PATCH</a></p>
+        <p><a href="#example-put">#4 - PUT</a></p>
+        <p><a href="#example-delete">#5 - DELETE</a></p>
+        <p><a href="#example-get-all">#6 - GET ALL</a></p>
+        <p><a href="#example-filters">#7 - FILTROS</a></p>
+    </div>
+
+    <div id='example-post' class="container">
+        <h3>#1 – POST</h3>
+        <div class="row">
+            <p>Para cadastrar uma feira livre, <a href="{% url 'api-fair-list' %}" target="_blank">clique aqui</a> e
+                insira o json abaixo na aba 'Raw data' conforme mostra imagem.</p>
+        </div>
+        <div class="row">
+            <pre class="prettyprint">
+                {
+                    "registro": "0882-0",
+                    "id": "882",
+                    "long": "-46550164",
+                    "lat": "-23558733",
+                    "setcens": "355030885000091",
+                    "areap": "3550308005040",
+                    "coddist": "87",
+                    "distrito": "VILA FORMOSA",
+                    "codsubpref": "26",
+                    "subpref": "ARICANDUVA-FORMOSA-CARRAO",
+                    "regiao5": "Leste",
+                    "regiao8": "Leste 1",
+                    "nome": "VILA FORMOSA",
+                    "logadouro": "RUA MARAGOJIPE",
+                    "numero": "S/N",
+                    "bairro": "VL FORMOSA",
+                    "referencia": "TV RUA PRETORIA"
+                }
+        </pre>
+            <img src="{% static 'img/example_post.jpg' %}">
+        </div>
+    </div>
+
+    <div id='example-get-single' class="container">
+        <h3>#2 – GET SINGLE</h3>
+        <div class="row">
+            <p>Para buscar apenas a feira livre , <a href="{% url 'api-fair-detail' registro='0882-0' %}" target="_blank">clique aqui</a></p>
+        </div>
+    </div>
+
+    <div id='example-patch' class="container">
+        <h3>#3 - PATCH</h3>
+        <div class="row">
+            <p>Para atualizar uma feira livre, <a href="{% url 'api-fair-detail' registro='0882-0' %}" target="_blank">clique aqui</a> e
+                insira o json abaixo na aba 'Raw data' conforme mostra imagem.</p>
+        </div>
+        <div class="row">
+            <pre class="prettyprint">
+                {
+                    "distrito": "VILA",
+                    "subpref": "ARICANDUVA",
+                    "nome": "VILA",
+                    "logadouro": "RUA",
+                    "referencia": "TV"
+                }
+        </pre>
+            <img src="{% static 'img/example_patch.jpg' %}">
+        </div>
+    </div>
+
+    <div id='example-put' class="container">
+        <h3>#4 - PUT</h3>
+        <div class="row">
+            <p>Para atualizar uma feira livre, <a href="{% url 'api-fair-detail' registro='0882-0' %}" target="_blank">clique aqui</a> e
+                insira o json abaixo na aba 'Raw data' conforme mostra imagem.</p>
+        </div>
+        <div class="row">
+            <pre class="prettyprint">
+                {
+                    "registro": "0882-0",
+                    "id": "882",
+                    "long": "-46550164",
+                    "lat": "-23558733",
+                    "setcens": "355030885000091",
+                    "areap": "3550308005040",
+                    "coddist": "87",
+                    "distrito": "VILA FORMOSA",
+                    "codsubpref": "26",
+                    "subpref": "ARICANDUVA-FORMOSA-CARRAO",
+                    "regiao5": "Leste",
+                    "regiao8": "Leste 1",
+                    "nome": "VILA FORMOSA",
+                    "logadouro": "RUA MARAGOJIPE",
+                    "numero": "S/N",
+                    "bairro": "VL FORMOSA",
+                    "referencia": "TV RUA PRETORIA"
+                }
+        </pre>
+            <img src="{% static 'img/example_put.jpg' %}">
+        </div>
+    </div>
+
+    <div id='example-get-all' class="container">
+        <h3>#6 – GET ALL</h3>
+        <div class="row">
+            <p>Para listar todos as feiras livres, <a href="{% url 'api-fair-list' %}" target="_blank">clique aqui</a></p>
+        </div>
+    </div>
+
+    <div id='example-filters' class="container">
+        <h3>#7 – FILTROS</h3>
+        <div class="row">
+            <p>Para filtrar por nome, distrito, bairo e região 5 basta
+                <a href="{% url 'api-fair-list' %}" target="_blank">clicar aqui</a>,
+                ir em FILTRAR e preencher os campos conforme mostra imagem abaixo:</p>
+
+            <img src="{% static 'img/example_filters.jpg' %}">
+        </div>
+    </div>
+
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
