@@ -6,7 +6,7 @@ Então para criar a API, no meu caso, eu usei:
 * Projeto: fairfree
 * App: api
 * Model: Fair
-* Fields: id , long , lat , setcens , areap , coddist , distrito , codsubpref , subprefe , regiao5 , regiao8 , nome , registro , logradouro , numero , bairro , referencia
+* Fields: id, long, lat, setcens, areap, coddist, distrito, codsubpref, subprefe, regiao5, regiao8, nome, registro, logradouro, numero, bairro, referencia
 
 ## Clonando o projeto
 
