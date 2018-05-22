@@ -7,43 +7,50 @@
 * Model: Fair
 * Fields: id, long, lat, setcens, areap, coddist, distrito, codsubpref, subprefe, regiao5, regiao8, nome, registro, logradouro, numero, bairro, referencia
 
-## Clonando o projeto
+## Instalação
+
+1. Faça o checkout do projeto:
 
 ```bash
 $ git clone https://github.com/brunaangelino/fairfree.git
-$ cd fairfree
-$ python -m venv .venv
-$ cd .venv/Scripts
-$ activate
-$ cd ..
-$ cd ..
-$ pip install -r requirements.txt
-$ python manage.py migrate
-$ python manage.py import_archive_csv_fair DEINFO_AB_FEIRASLIVRES_2014.csv
-$ python manage.py test
-$python manage.py runserver
 ```
 
-## Configurando um novo ambiente
+2. Crie um ambiente virtualizado com [virtualenv]() e ative-o:
 
 ```bash
-$ python -m venv .venv
-$ python -m venv .venv
-$ cd .venv/Scripts
-$ activate
-$ cd ..
-$ cd ..
-$ mkdir fairfree; cd fairfree
-$ pip install django
-$ pip install djangorestframework
-$ pip install django-filter
-$ pip install mixer
-$ pip install lxml
-$ pip freeze > requirements.txt
-$ django-admin.py startproject fairfree.
-$ python manage.py startapp api
+$ cd fairfree
+$ python3 -m venv .venv
+$ source .venv/bin/activate
 ```
-Veja o meu requirements.txt
+
+Executando o último comando, deve aparecer dessa forma:
+
+```bash
+(.venv)$
+```
+
+Isso significa que o ambiente foi ativado com sucesso. Agora vamos instalar as dependências executando o arquivo `requirements.txt`:
+```bash
+(.venv)$ pip install -r requirements.txt
+```
+
+ou pode instalar as dependências uma por uma, assim:
+
+```bash
+(.venv)$ pip install django
+(.venv)$ pip install djangorestframework
+(.venv)$ pip install django-filter
+(.venv)$ pip install mixer
+(.venv)$ pip install lxml
+```
+
+após instalar todas as dependências:
+
+```bash
+(.venv)$ pip freeze
+```
+
+deverá conter esses pacotes:
 
 ```bash
 Django==2.0.5
@@ -58,96 +65,28 @@ six==1.11.0
 text-unidecode==1.2
 ```
 
-## Step-0 Projeto inicial
-
-Abra o arquivo `settings.py` e em `INSTALLED_APPS` acrescente
-
-```python
-INSTALLED_APPS = (
-	...
-    'rest_framework',
-    'api',
-)
-```
-
-## Step-1 Models
-
-### `models.py`: Criando o modelo `Fair`
-
-```python
-class Fair(models.Model):
-    id = models.CharField(max_length=8, verbose_name='Identificação')
-    long = models.CharField(max_length=10, verbose_name='Longitude')
-    lat = models.CharField(max_length=10, verbose_name='Latitude')
-    setcens = models.CharField(max_length=15, verbose_name='Setor censitário')
-    areap = models.CharField(max_length=13, verbose_name='Área de ponderação')
-    coddist = models.CharField(max_length=9, verbose_name='Código do distrito')
-    distrito = models.CharField(max_length=18, verbose_name='Distrito municipal')
-    codsubpref = models.CharField(max_length=2, verbose_name='Código da subprefeitura')
-    subpref = models.CharField(max_length=25, verbose_name='Subprefeitura')
-    regiao5 = models.CharField(max_length=6, verbose_name='Região conforme divisão do município em 5 áreas')
-    regiao8 = models.CharField(max_length=7, verbose_name='Região conforme divisão do município em 8 áreas')
-    nome = models.CharField(max_length=30, verbose_name='Nome da feira livre')
-    registro = models.CharField(max_length=6, primary_key=True, verbose_name='Registro da feira livre')
-    logadouro = models.CharField(max_length=34, verbose_name='Logradouro')
-    numero = models.CharField(max_length=5, verbose_name='Número')
-    bairro = models.CharField(max_length=20, verbose_name='Bairro')
-    referencia = models.CharField(max_length=24, verbose_name='Ponto de referência')
-
-    def __str__(self):
-        return self.nome
-```
-
-### Fazendo a migração
+3. Rode o comando abaixo para o Django criar o banco local e executar as migrações que criamos:
 
 ```bash
-$ cd ..
-$ python manage.py makemigrations api
-$ python manage.py migrate
+(.venv)$ python manage.py migrate
 ```
 
-## Step-2 ModelSerializer
-
-### `serializers.py`: Criando `FairSerializer`
-
-Precisamos proporcionar uma forma de serialização e desserialização das instâncias de `fair` em uma representação JSON.
+4. Agora rode o projeto com o servidor embarcado:
 
 ```bash
-$ cd api
-$ mkdir rest
-$ cd rest
-$ echo > serializers.py
+(.venv)$ python manage.py runserver
 ```
 
-Edite
+5. Acesse o sistema em `http://localhost:8000`.
 
-```python
-# -*- coding: UTF-8 -*-
-from rest_framework.serializers import ModelSerializer, CharField
+6. Para executar os testes unitários:
 
-from api.models import Fair
-
-
-class FairSerializer(ModelSerializer):
-    class Meta:
-        model = Fair
-        fields = '__all__'
-
-
-class FairListSerializer(FairSerializer):
-    pass
-
-
-class FairDetailSerializer(FairSerializer):
-    registro = CharField(max_length=6, read_only=True)
+```bash
+(.venv)$ python manage.py test
 ```
 
-Normalmente a primeira parte da classe define os campos que serão serializados. Neste caso, por ser serialização de uma model eu vou utilizar todos os campos, sendo assim utilizo fields = '__all__'.
+7. Para executar o script para importar o arquivo `DEINFO_AB_FEIRASLIVRES_2014.csv:
 
-Uma classe de serialização é similar a uma classe `Form` do Django, e inclui validações similares para os campos, tais como `required`, `max_length`,  `default` e `read_only`.
-
-Criei três serializers, sendo FairSerializer o comum, com informação da model e dos campos visiveis, o FairListSerializer que não é preciso implentar nada pois precisamos do mesmo comportamento do FairSerializer e o FairDetailSerializer que foi necessário colocar o campo registro como `read_only` pois ele não poderá sofrer alterações na atualização do objeto Fair.
-
-É importante lembrar que as classes `ModelSerializer` não faz nenhuma mágica, são simplesmente um atalho para a criação das classes de serialização:
-* Os campos são definidos automaticamente.
-* Os métodos `create()` e `update()` são implementados por padrão de uma forma simplificada.
+```bash
+(.venv)$ python manage.py import_archive_csv_fair DEINFO_AB_FEIRASLIVRES_2014.csv
+```
