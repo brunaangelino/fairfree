@@ -85,7 +85,7 @@ text-unidecode==1.2
 (.venv)$ python manage.py test
 ```
 
-7. Para executar o script para importar o arquivo `DEINFO_AB_FEIRASLIVRES_2014.csv:
+7. Para executar o script para importar o arquivo `DEINFO_AB_FEIRASLIVRES_2014.csv`:
 
 ```bash
 (.venv)$ python manage.py import_archive_csv_fair DEINFO_AB_FEIRASLIVRES_2014.csv
