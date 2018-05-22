@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import os.path
 from django.core.management.base import BaseCommand
-from adaptor.model import CsvDataException
 
 from api.adaptors import FairAdaptorModel
 from api.importers import CSVImporter
@@ -23,8 +22,10 @@ class Command(BaseCommand):
                 print('Importando arquivo "%s" ... Aguarde!' % file_name)
                 try:
                     csv_importer.import_from_filename(FairAdaptorModel)
-                except CsvDataException:
+
                     print('Arquivo "%s" importado.' % file_name)
+                except Exception as e:
+                    print('Ocorreu algum erro ao importar o arquivo %s: %s' % (file_name, e))
 
             else:
                 print('Arquivo %s não encontrado.' % (file_name))
